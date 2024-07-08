@@ -1,5 +1,11 @@
-import { createTables, insertIntoTables } from './queryFunctions.js'
+import { dropTables, createTables, insertIntoTables } from './queryFunctions.js'
 ;(async () => {
-  await createTables()
-  await insertIntoTables()
+  try {
+    await dropTables()
+    await createTables()
+    await insertIntoTables()
+    console.log('Tables created and data inserted successfully.')
+  } catch (error) {
+    console.error('Error running queries:', error)
+  }
 })()
