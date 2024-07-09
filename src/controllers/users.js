@@ -2,7 +2,7 @@ import Model from '../models/model.js'
 
 const usersModel = new Model('users')
 
-export const usersPage = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const data = await usersModel.select('name, email')
     res.status(200).json({ messages: data.rows })
