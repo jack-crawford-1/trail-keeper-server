@@ -11,6 +11,16 @@ export const getVolunteers = async (req, res) => {
   }
 }
 
+export const getVolunteer = async (req, res) => {
+  const { id } = req.params
+  try {
+    const data = await volunteersModel.select('*', `WHERE id = $1`, [id])
+    res.status(200).json({ events: data.rows })
+  } catch (err) {
+    res.status(500).json({ events: err.stack })
+  }
+}
+
 export const addVolunteer = async (req, res) => {
   const { user_id, skills, availability } = req.body
   const columns = 'user_id, skills, availability'
