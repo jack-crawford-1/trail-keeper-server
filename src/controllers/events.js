@@ -32,3 +32,17 @@ export const addEvent = async (req, res) => {
     res.status(500).json({ message: err.stack })
   }
 }
+
+export const updateEvent = async (req, res) => {
+  const { id } = req.params
+  const { title, description, date, location } = req.body
+  const updatedValues = { title, description, date, location }
+
+  try {
+    const data = await eventsModel.update(updatedValues, id)
+    res.status(200).json({ message: data.rows })
+  } catch (err) {
+    console.error('Error updating event', err)
+    res.status(500).json({ message: `Error udating event' ${err.message}` })
+  }
+}

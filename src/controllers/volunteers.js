@@ -32,3 +32,19 @@ export const addVolunteer = async (req, res) => {
     res.status(500).json({ message: err.stack })
   }
 }
+
+export const updateVolunteer = async (req, res) => {
+  const { id } = req.params
+  const { skills, availability } = req.body
+  const updatedValues = { skills, availability }
+
+  try {
+    const data = await volunteersModel.update(updatedValues, id)
+    res.status(200).json({ message: data.rows })
+  } catch (err) {
+    console.error('Error updating volunteer:', err)
+    res
+      .status(500)
+      .json({ message: `Error updating volunteer: ${err.message}` })
+  }
+}

@@ -33,3 +33,18 @@ export const addTrailReport = async (req, res) => {
     res.status(500).json({ message: err.stack })
   }
 }
+
+export const updateTrailReport = async (req, res) => {
+  const { id } = req.params
+  const { trail_id, condition, report_date, reporter } = req.body
+  const updatedValues = { trail_id, condition, report_date, reporter }
+  try {
+    const data = await trailReportsModel.update(updatedValues, id)
+    res.status(200).json({ message: data.rows })
+  } catch (err) {
+    console.error('Error updating trail report:', err)
+    res
+      .status(500)
+      .json({ message: `Error updating trail report: ${err.message}` })
+  }
+}
