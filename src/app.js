@@ -2,6 +2,9 @@ import cors from 'cors'
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import router from '../src/routes/index.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
 

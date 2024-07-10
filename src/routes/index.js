@@ -43,12 +43,14 @@ import {
   addForumPost,
   updateForumPost,
 } from '../controllers/forumPosts.js'
+import { signup, login } from '../controllers/auth.js'
+import authMiddleware from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
 router.get('/', indexPage)
 
-router.get('/users', getUsers)
+router.get('/users', authMiddleware, getUsers)
 router.get('/trails', getTrails)
 router.get('/events', getEvents)
 router.get('/messages', getMessages)
@@ -57,7 +59,7 @@ router.get('/trail-reports', getTrailReports)
 router.get('/training-modules', getTrainingModules)
 router.get('/forum-posts', getForumPosts)
 
-router.get('/user/:id', getUser)
+router.get('/user/:id', authMiddleware, getUser)
 router.get('/trail/:id', getTrail)
 router.get('/event/:id', getEvent)
 router.get('/message/:id', getMessage)
@@ -74,6 +76,8 @@ router.post('/volunteer', addVolunteer)
 router.post('/trail-report', addTrailReport)
 router.post('/training-module', addTrainingModule)
 router.post('/forum-post', addForumPost)
+router.post('/signup', signup)
+router.post('/login', login)
 
 router.patch('/user/:id', updateUser)
 router.patch('/trail/:id', updateTrail)

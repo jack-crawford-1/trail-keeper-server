@@ -1,4 +1,8 @@
+import dotenv from 'dotenv'
 import { dropTables, createTables, insertIntoTables } from './queryFunctions.js'
+
+dotenv.config()
+
 ;(async () => {
   try {
     await dropTables()
