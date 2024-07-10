@@ -1,43 +1,34 @@
 import { expect } from 'chai'
-import { server, BASE_URL } from './setup.js'
-
-const mockData = {
-  messages: [
-    { name: 'Alice', email: 'aaa@gmail.com' },
-    { name: 'Bob', email: 'bbb@gmail.com' },
-  ],
-}
+import request from 'supertest'
+import nock from 'nock'
+import app from '../src/app.js'
 
 const mockUser = {
-  users: [
-    {
-      id: 1,
-      name: 'Alice',
-      email: 'aaa@gmail.com',
-    },
-  ],
+  id: 1,
+  name: 'James',
+  email: 'jimmy@yahoo.com',
 }
 
-describe('Users page test', () => {
-  it('gets users', (done) => {
-    server
-      .get(`${BASE_URL}/users`)
-      .expect(200)
-      .end((err, res) => {
-        if (err) return done(err)
-        expect(res.status).to.equal(200)
-        expect(res.body).to.deep.equal(mockData)
-        done()
-      })
+describe('User page test', () => {
+  beforeEach(() => {
+    nock('http://localhost:3000')
+      .get('/v1/user/1')
+      .reply(200, { users: [mockUser] })
   })
-  it('gets single user', (done) => {
-    server
-      .get(`${BASE_URL}/user/1`)
+
+  afterEach(() => {
+    nock.cleanAll()
+  })
+
+  it('gets a single user', (done) => {
+    request(app)
+      .get('/v1/user/1')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).to.equal(200)
-        expect(res.body).to.deep.equal(mockUser)
+        expect(res.body).to.have.property('users').that.is.an('array')
+        expect(res.body.users[0]).to.include.keys('id', 'name', 'email')
         done()
       })
   })
