@@ -30,10 +30,7 @@ describe('Users page test', () => {
         done()
       })
   })
-})
-
-describe('User page test', () => {
-  it('gets user', (done) => {
+  it('gets single user', (done) => {
     server
       .get(`${BASE_URL}/user/1`)
       .expect(200)
