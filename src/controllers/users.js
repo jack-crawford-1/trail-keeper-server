@@ -5,9 +5,9 @@ const usersModel = new Model('users')
 export const getUsers = async (req, res) => {
   try {
     const data = await usersModel.select('name, email')
-    res.status(200).json({ messages: data.rows })
+    res.status(200).json({ users: data.rows })
   } catch (err) {
-    res.status(200).json({ messages: err.stack })
+    res.status(500).json({ users: err.stack })
   }
 }
 
