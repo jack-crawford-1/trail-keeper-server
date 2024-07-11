@@ -2,16 +2,31 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import User from '../models/user.js'
 
-const signup = async (req, res) => {
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return re.test(String(email).toLowerCase())
+}
+
+export async function signup(req, res) {
   try {
     const { name, email, password } = req.body
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'All fields are required' })
+    }
+
+    if (!validateEmail(email)) {
+      return res.status(400).json({ error: 'Invalid email format' })
+    }
+
     const existingUser = await User.findByEmail(email)
 
     if (existingUser) {
       return res.status(400).json({ error: 'Email already in use' })
     }
 
-    const newUser = await User.create({ name, email, password })
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const newUser = await User.create({ name, email, password: hashedPassword })
 
     const token = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
@@ -23,7 +38,7 @@ const signup = async (req, res) => {
   }
 }
 
-const login = async (req, res) => {
+export async function login(req, res) {
   try {
     const { email, password } = req.body
     const user = await User.findByEmail(email)
@@ -41,5 +56,3 @@ const login = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' })
   }
 }
-
-export { signup, login }
