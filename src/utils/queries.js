@@ -4,15 +4,16 @@ DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
-  email VARCHAR
+  email VARCHAR,
+  password VARCHAR
 );
 `
 
 export const insertUsers = `
-INSERT INTO users(name, email)
+INSERT INTO users(name, email, password)
 VALUES 
-  ('Alice', 'aaa@gmail.com'),
-  ('Bob', 'bbb@gmail.com');
+  ('Alice', 'aaa@gmail.com', 'password123'),
+  ('Bob', 'bbb@gmail.com', 'password123');
 `
 
 export const dropUsersTable = 'DROP TABLE IF EXISTS users CASCADE;'
