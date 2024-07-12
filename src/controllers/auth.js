@@ -25,8 +25,7 @@ export async function signup(req, res) {
       return res.status(400).json({ error: 'Email already in use' })
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10)
-    const newUser = await User.create({ name, email, password: hashedPassword })
+    const newUser = await User.create({ name, email, password })
 
     const token = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
@@ -34,25 +33,32 @@ export async function signup(req, res) {
 
     res.status(201).json({ token, user: newUser })
   } catch (error) {
+    console.error('Signup error:', error)
     res.status(500).json({ error: 'Internal server error' })
   }
 }
 
 export async function login(req, res) {
   try {
-    const { email, password } = req.body
+    const email = req.body.email
+    const password = req.body.password
     const user = await User.findByEmail(email)
-
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(400).json({ error: 'Invalid email or password' })
-    }
-
+    const isPasswordValid = await bcrypt.compare(password, user.password)
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     })
 
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid email' })
+    }
+
+    if (!isPasswordValid) {
+      return res.status(400).json({ error: 'Invalid password' })
+    }
+
     res.status(200).json({ token, user })
   } catch (error) {
+    console.error('Login error:', error)
     res.status(500).json({ error: 'Internal server error' })
   }
 }
