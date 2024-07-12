@@ -7,7 +7,7 @@ describe('Index page test', () => {
   beforeEach(() => {
     nock('http://localhost:3000')
       .get('/v1')
-      .reply(200, { message: 'API up and running' })
+      .reply(200, { message: 'Server connected' })
   })
 
   afterEach(() => {

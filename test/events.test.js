@@ -6,26 +6,26 @@ import app from '../src/app.js'
 const mockEvent = {
   id: 1,
   user_id: 1,
-  title: 'Trail Cleanup',
-  description: 'Cleaning the main trail',
+  title: 'Dummy Event',
+  description: 'This is a dummy event',
   date: '2024-08-14T12:00:00.000Z',
-  location: 'Main Trail',
+  location: 'City',
 }
 
 const mockEvents = [
   {
     id: 1,
     user_id: 1,
-    title: 'Trail Cleanup',
-    description: 'Cleaning the main trail',
+    title: 'Dummy Event 1',
+    description: 'Dummy event description 1',
     date: '2024-08-14T12:00:00.000Z',
-    location: 'Main Trail',
+    location: 'Park',
   },
   {
     id: 2,
     user_id: 1,
-    title: 'Beach Cleanup',
-    description: 'Cleaning the beach',
+    title: 'Dummy Event 2',
+    description: 'Dummy event description 2',
     date: '2024-08-14T12:00:00.000Z',
     location: 'Beach',
   },
