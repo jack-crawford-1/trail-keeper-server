@@ -46,7 +46,8 @@ import {
 import { signup, login } from '../controllers/auth.js'
 import authMiddleware from '../middleware/authMiddleware.js'
 
-import getWeather from '../controllers/getWeather.js'
+import getCurrentWeather from '../controllers/getCurrentWeather.js'
+import getSevenDayWeather from '../controllers/getSevenDayWeather.js'
 
 const router = express.Router()
 
@@ -60,7 +61,8 @@ router.get('/volunteers', getVolunteers)
 router.get('/trail-reports', getTrailReports)
 router.get('/training-modules', getTrainingModules)
 router.get('/forum-posts', getForumPosts)
-router.get('/weather', getWeather)
+router.get('/weather', getCurrentWeather)
+router.get('/weatherseven', getSevenDayWeather)
 
 router.get('/user/:id', authMiddleware, getUser)
 router.get('/trail/:id', getTrail)
