@@ -13,7 +13,8 @@ export const insertUsers = `
 INSERT INTO users(name, email, password)
 VALUES 
   ('Alice', 'aaa@gmail.com', 'password123'),
-  ('Bob', 'bbb@gmail.com', 'password123');
+  ('Bob', 'bbb@gmail.com', 'password123'),
+  ('Charlie', 'ccc@gmail.com', 'password123');
 `
 
 export const dropUsersTable = 'DROP TABLE IF EXISTS users CASCADE;'
@@ -74,8 +75,12 @@ CREATE TABLE IF NOT EXISTS events (
 export const insertEvents = `
 INSERT INTO events(user_id, title, description, date, location)
 VALUES 
-  (1, 'Trail Cleanup', 'Cleaning the main trail', '2024-08-15', 'Main Trail'),
-  (2, 'Volunteer Meetup', 'Meeting for volunteers', '2024-09-01', 'Community Center');
+  (1, 'Trail Cleanup', 'Cleaning the main trail', '2024-08-15', 'Holdsworth Road End'),
+  (2, 'Volunteer Meetup', 'Meeting for volunteers', '2024-09-01', 'TTC Community Center'),
+  (1, 'Nature Walk', 'Guided walk through the forest', '2024-07-20', 'Mt Holdsworth Trail'),
+  (2, 'Bird Watching', 'Spotting and identifying local birds', '2024-08-05', 'Zealandia Bird Sanctuary'),
+  (1, 'Night Hike', 'Exploring trails at night', '2024-07-25', 'Orongorongo Valley'),
+  (1, 'Plant Identification', 'Learn about local flora', '2024-08-22', 'Botanical Gardens');
 `
 
 export const dropEventsTable = 'DROP TABLE IF EXISTS events CASCADE;'
