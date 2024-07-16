@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS events (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
   title VARCHAR,
+  short_description TEXT,
   description TEXT,
   date DATE,
   location VARCHAR
@@ -73,14 +74,14 @@ CREATE TABLE IF NOT EXISTS events (
 `
 
 export const insertEvents = `
-INSERT INTO events(user_id, title, description, date, location)
+INSERT INTO events(user_id, title, short_description, description, date, location)
 VALUES 
-  (1, 'Trail Cleanup', 'Cleaning the main trail', '2024-08-15', 'Holdsworth Road End'),
-  (2, 'Volunteer Meetup', 'Meeting for volunteers', '2024-09-01', 'TTC Community Center'),
-  (1, 'Nature Walk', 'Guided walk through the forest', '2024-07-20', 'Mt Holdsworth Trail'),
-  (2, 'Bird Watching', 'Spotting and identifying local birds', '2024-08-05', 'Zealandia Bird Sanctuary'),
-  (1, 'Night Hike', 'Exploring trails at night', '2024-07-25', 'Orongorongo Valley'),
-  (1, 'Plant Identification', 'Learn about local flora', '2024-08-22', 'Botanical Gardens');
+  (1, 'Trail Cleanup', 'Cleaning the main trail', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam volutpat lacus et nibh aliquam euismod. Nunc ullamcorper nisl arcu, a venenatis velit lacinia ac. Etiam dignissim augue vitae facilisis faucibus. Ut posuere odio non vulputate bibendum. Integer ipsum metus, gravida in ultricies et, maximus vel arcu. Duis efficitur ultrices dolor, sed fringilla dolor venenatis eget. Maecenas tempor, diam non commodo pellentesque, nisl leo volutpat velit, ac volutpat erat sapien vel enim. Nam mollis ullamcorper metus a mattis. Integer blandit fringilla accumsan. Praesent luctus dapibus lacinia. Quisque non justo non dolor bibendum placerat. Phasellus ac nisi justo. Integer quis consectetur risus. Mauris scelerisque, massa non efficitur faucibus, nulla elit tempor orci, ut bibendum nisi nibh et nunc. Etiam eget massa nec urna mollis elementum. Sed euismod eros urna, eget finibus diam feugiat at. Maecenas eu urna enim. Etiam lacinia nunc sit amet fermentum tristique. Suspendisse tincidunt egestas bibendum.', '2024-08-15', 'Holdsworth Road End'),
+  (2, 'Volunteer Meetup', 'Meeting for volunteers', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet tortor quis nisi finibus feugiat. Fusce sit amet tortor non mi venenatis tincidunt. Vivamus aliquet enim sit amet urna laoreet, quis feugiat purus iaculis. Aenean et sem ut orci euismod vehicula. Morbi sed turpis nec turpis laoreet fermentum sit amet et leo. Etiam lacinia nunc non venenatis scelerisque.', '2024-09-01', 'TTC Community Center'),
+  (1, 'Nature Walk', 'Guided walk through the forest', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sapien a est aliquet cursus. Ut fringilla sem nec bibendum tincidunt. Donec vehicula dui ac magna condimentum, id cursus metus gravida. Pellentesque a dictum libero, ut tincidunt erat. Suspendisse potenti. Aliquam erat volutpat. Nulla facilisi. Mauris cursus nunc a mi congue, et elementum nunc egestas. Donec quis sapien ac orci viverra vulputate.', '2024-07-20', 'Mt Holdsworth Trail'),
+  (2, 'Bird Watching', 'Spotting and identifying local birds', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim mauris ac velit pretium, sed suscipit odio facilisis. Nam sagittis quam id magna commodo, a pretium augue ultricies. Vivamus vehicula nulla vitae orci ullamcorper, nec sollicitudin ex ullamcorper. Quisque et magna auctor, consequat urna et, feugiat est. Integer vehicula libero id urna feugiat, et laoreet arcu porttitor. Phasellus convallis ante sit amet nibh scelerisque, ut auctor nisl gravida. Fusce tempor, nulla in sodales placerat, ex metus luctus turpis, vel finibus augue lectus sit amet nulla.', '2024-08-05', 'Zealandia Bird Sanctuary'),
+  (1, 'Night Hike', 'Exploring trails at night', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper orci at ex vehicula, sit amet bibendum turpis malesuada. Nullam venenatis nisi nec malesuada varius. Suspendisse potenti. Nulla volutpat ligula in metus bibendum, id pretium tortor viverra. Quisque efficitur turpis non vestibulum blandit. Proin dapibus tellus ut vestibulum feugiat.', '2024-07-25', 'Orongorongo Valley'),
+  (1, 'Plant Identification', 'Learn about local flora', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada libero sit amet mauris ultrices, nec tempus metus malesuada. In non turpis et magna faucibus facilisis. Pellentesque id arcu sit amet sapien tincidunt ultricies. Nullam scelerisque lacus a erat pharetra, ac accumsan odio hendrerit. Suspendisse potenti. Proin eu magna tincidunt, sodales elit nec, dictum metus.', '2024-08-22', 'Botanical Gardens');
 `
 
 export const dropEventsTable = 'DROP TABLE IF EXISTS events CASCADE;'

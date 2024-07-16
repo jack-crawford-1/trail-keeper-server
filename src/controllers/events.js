@@ -5,7 +5,7 @@ const eventsModel = new Model('events')
 export const getEvents = async (req, res) => {
   try {
     const data = await eventsModel.select(
-      'id, title, description, date, location'
+      'id, user_id, title, short_description, description, date, location'
     )
     res.status(200).json({ events: data.rows })
   } catch (err) {
@@ -17,7 +17,7 @@ export const getEvent = async (req, res) => {
   const { id } = req.params
   try {
     const data = await eventsModel.select(
-      'title, description, date, location',
+      'user_id, title, short_description, description, date, location',
       'WHERE id = $1',
       [id]
     )
@@ -28,9 +28,12 @@ export const getEvent = async (req, res) => {
 }
 
 export const addEvent = async (req, res) => {
-  const { title, description, date, location } = req.body
-  const columns = 'title, description, date, location'
-  const values = `'${title}', '${description}', '${date}', '${location}'`
+  const { user_id, title, short_description, description, date, location } =
+    req.body
+  const columns =
+    'user_id, title, short_description, description, date, location'
+  const values = `'${user_id}', '${title}', '${short_description}', '${description}', '${date}', '${location}'`
+
   try {
     const data = await eventsModel.insertWithReturn(columns, values)
     res.status(200).json({ events: data.rows })
@@ -41,8 +44,14 @@ export const addEvent = async (req, res) => {
 
 export const updateEvent = async (req, res) => {
   const { id } = req.params
-  const { title, description, date, location } = req.body
-  const updatedValues = { title, description, date, location }
+  const { title, short_description, description, date, location } = req.body
+  const updatedValues = {
+    title,
+    short_description,
+    description,
+    date,
+    location,
+  }
 
   try {
     const data = await eventsModel.update(updatedValues, id)
