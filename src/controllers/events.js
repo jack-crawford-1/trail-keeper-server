@@ -4,7 +4,9 @@ const eventsModel = new Model('events')
 
 export const getEvents = async (req, res) => {
   try {
-    const data = await eventsModel.select('title, description, date, location')
+    const data = await eventsModel.select(
+      'id, title, description, date, location'
+    )
     res.status(200).json({ events: data.rows })
   } catch (err) {
     res.status(200).json({ events: err.stack })
@@ -14,7 +16,11 @@ export const getEvents = async (req, res) => {
 export const getEvent = async (req, res) => {
   const { id } = req.params
   try {
-    const data = await eventsModel.select('*', `WHERE id = $1`, [id])
+    const data = await eventsModel.select(
+      'title, description, date, location',
+      'WHERE id = $1',
+      [id]
+    )
     res.status(200).json({ events: data.rows })
   } catch (err) {
     res.status(500).json({ events: err.stack })
