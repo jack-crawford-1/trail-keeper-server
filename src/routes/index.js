@@ -54,14 +54,15 @@ import {
 
 import getCurrentWeather from '../controllers/getCurrentWeather.js'
 import getSevenDayWeather from '../controllers/getSevenDayWeather.js'
+import getGeoJson from '../controllers/getGeoJson.js'
 
 const router = express.Router()
 
 router.get('/', indexPage)
 
+router.get('/geojson', getGeoJson)
 router.get('/comments', getComments)
 router.post('/comments', addComment)
-
 router.get('/comments/:id', getComment)
 router.patch('/comments/:id', updateComment)
 
