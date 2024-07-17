@@ -86,6 +86,28 @@ VALUES
 
 export const dropEventsTable = 'DROP TABLE IF EXISTS events CASCADE;'
 
+// Comments Table
+export const createCommentsTable = `
+DROP TABLE IF EXISTS comments CASCADE;
+CREATE TABLE IF NOT EXISTS comments (
+  id SERIAL PRIMARY KEY,
+  post_id INTEGER REFERENCES events(id),
+  user_id INTEGER REFERENCES users(id),
+  content TEXT,
+  created_at TIMESTAMP
+);
+
+`
+
+export const insertComments = `
+INSERT INTO comments(post_id, user_id, content, created_at)
+VALUES 
+  (1, 1, 'This is a comment by Alice', NOW()),
+  (1, 2, 'This is a comment by Bob', NOW());
+`
+
+export const dropCommentsTable = 'DROP TABLE IF EXISTS comments CASCADE;'
+
 // Trail Reports Table
 export const createTrailReportsTable = `
 DROP TABLE IF EXISTS trail_reports CASCADE;

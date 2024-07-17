@@ -45,6 +45,12 @@ import {
 } from '../controllers/forumPosts.js'
 import { signup, login } from '../controllers/auth.js'
 import authMiddleware from '../middleware/authMiddleware.js'
+import {
+  getComment,
+  addComment,
+  updateComment,
+  getComments,
+} from '../controllers/getComment.js'
 
 import getCurrentWeather from '../controllers/getCurrentWeather.js'
 import getSevenDayWeather from '../controllers/getSevenDayWeather.js'
@@ -52,6 +58,12 @@ import getSevenDayWeather from '../controllers/getSevenDayWeather.js'
 const router = express.Router()
 
 router.get('/', indexPage)
+
+router.get('/comments', getComments)
+router.post('/comments', addComment)
+
+router.get('/comments/:id', getComment)
+router.patch('/comments/:id', updateComment)
 
 router.get('/users', authMiddleware, getUsers)
 router.get('/trails', getTrails)

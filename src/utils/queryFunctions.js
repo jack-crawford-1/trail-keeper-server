@@ -24,6 +24,9 @@ import {
   createForumPostsTable,
   insertForumPosts,
   dropForumPostsTable,
+  createCommentsTable,
+  insertComments,
+  dropCommentsTable,
 } from './queries.js'
 
 export const executeQueryArray = async (arr) => {
@@ -43,6 +46,7 @@ export const dropTables = () =>
     dropTrainingModulesTable,
     dropUsersTable,
     dropTrailsTable,
+    dropCommentsTable,
   ])
 
 export const createTables = () =>
@@ -55,6 +59,7 @@ export const createTables = () =>
     createTrailReportsTable,
     createTrainingModulesTable,
     createForumPostsTable,
+    createCommentsTable,
   ])
 
 export const insertIntoTables = () =>
@@ -67,4 +72,5 @@ export const insertIntoTables = () =>
     insertTrailReports,
     insertTrainingModules,
     insertForumPosts,
+    insertComments,
   ])
