@@ -34,7 +34,15 @@ export const insertMessages = `
 INSERT INTO messages(user_id, message, created_at)
 VALUES 
   (1, 'Hello from Alice', NOW()),
-  (2, 'Hello from Bob', NOW());
+  (2, 'Hello from Bob', NOW()),
+  (2, 'How is it going?', NOW()),
+  (1, 'Looking forward to the event', NOW()),
+  (1, 'Cant wait to meet everyone', NOW()),
+  (2, 'Is there a meetup point?', NOW()),
+  (1, 'See you all there!', NOW()),
+  (2, 'Do not forget your gear', NOW());
+
+  
 `
 
 export const dropMessagesTable = 'DROP TABLE IF EXISTS messages CASCADE;'
@@ -81,7 +89,9 @@ VALUES
   (1, 'Nature Walk', 'Guided walk through the forest', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sapien a est aliquet cursus. Ut fringilla sem nec bibendum tincidunt. Donec vehicula dui ac magna condimentum, id cursus metus gravida. Pellentesque a dictum libero, ut tincidunt erat. Suspendisse potenti. Aliquam erat volutpat. Nulla facilisi. Mauris cursus nunc a mi congue, et elementum nunc egestas. Donec quis sapien ac orci viverra vulputate.', '2024-07-20', 'Mt Holdsworth Trail'),
   (2, 'Bird Watching', 'Spotting and identifying local birds', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim mauris ac velit pretium, sed suscipit odio facilisis. Nam sagittis quam id magna commodo, a pretium augue ultricies. Vivamus vehicula nulla vitae orci ullamcorper, nec sollicitudin ex ullamcorper. Quisque et magna auctor, consequat urna et, feugiat est. Integer vehicula libero id urna feugiat, et laoreet arcu porttitor. Phasellus convallis ante sit amet nibh scelerisque, ut auctor nisl gravida. Fusce tempor, nulla in sodales placerat, ex metus luctus turpis, vel finibus augue lectus sit amet nulla.', '2024-08-05', 'Zealandia Bird Sanctuary'),
   (1, 'Night Hike', 'Exploring trails at night', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper orci at ex vehicula, sit amet bibendum turpis malesuada. Nullam venenatis nisi nec malesuada varius. Suspendisse potenti. Nulla volutpat ligula in metus bibendum, id pretium tortor viverra. Quisque efficitur turpis non vestibulum blandit. Proin dapibus tellus ut vestibulum feugiat.', '2024-07-25', 'Orongorongo Valley'),
-  (1, 'Plant Identification', 'Learn about local flora', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada libero sit amet mauris ultrices, nec tempus metus malesuada. In non turpis et magna faucibus facilisis. Pellentesque id arcu sit amet sapien tincidunt ultricies. Nullam scelerisque lacus a erat pharetra, ac accumsan odio hendrerit. Suspendisse potenti. Proin eu magna tincidunt, sodales elit nec, dictum metus.', '2024-08-22', 'Botanical Gardens');
+  (1, 'Plant Identification', 'Learn about local flora', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada libero sit amet mauris ultrices, nec tempus metus malesuada. In non turpis et magna faucibus facilisis. Pellentesque id arcu sit amet sapien tincidunt ultricies. Nullam scelerisque lacus a erat pharetra, ac accumsan odio hendrerit. Suspendisse potenti. Proin eu magna tincidunt, sodales elit nec, dictum metus.', '2024-08-22', 'Botanical Gardens'),
+  (1, 'Day Hike', 'Exploring trails at day', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper orci at ex vehicula, sit amet bibendum turpis malesuada. Nullam venenatis nisi nec malesuada varius. Suspendisse potenti. Nulla volutpat ligula in metus bibendum, id pretium tortor viverra. Quisque efficitur turpis non vestibulum blandit. Proin dapibus tellus ut vestibulum feugiat.', '2024-07-25', 'Orongorongo Valley'),
+  (1, 'fungus Identification', 'Learn about local fungi', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada libero sit amet mauris ultrices, nec tempus metus malesuada. In non turpis et magna faucibus facilisis. Pellentesque id arcu sit amet sapien tincidunt ultricies. Nullam scelerisque lacus a erat pharetra, ac accumsan odio hendrerit. Suspendisse potenti. Proin eu magna tincidunt, sodales elit nec, dictum metus.', '2024-08-22', 'Botanical Gardens');
 `
 
 export const dropEventsTable = 'DROP TABLE IF EXISTS events CASCADE;'
