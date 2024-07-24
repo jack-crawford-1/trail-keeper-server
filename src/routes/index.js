@@ -55,6 +55,7 @@ import {
 import getCurrentWeather from '../controllers/getCurrentWeather.js'
 import getSevenDayWeather from '../controllers/getSevenDayWeather.js'
 import getGeoJson from '../controllers/getGeoJson.js'
+import getDocRoutes from '../controllers/getDocRoutes.js'
 
 const router = express.Router()
 
@@ -76,6 +77,7 @@ router.get('/training-modules', getTrainingModules)
 router.get('/forum-posts', getForumPosts)
 router.get('/weather', getCurrentWeather)
 router.get('/weatherseven', getSevenDayWeather)
+router.get('/docroutes', getDocRoutes)
 
 router.get('/user/:id', authMiddleware, getUser)
 router.get('/trail/:id', getTrail)
