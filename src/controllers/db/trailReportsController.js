@@ -1,4 +1,5 @@
-import Model from '../models/model.js'
+import Model from '../../models/model.js'
+
 const trailReportsModel = new Model('trail_reports')
 
 export const getTrailReports = async (req, res) => {

@@ -1,4 +1,5 @@
-import Model from '../models/model.js'
+import Model from '../../models/model.js'
+
 const trainingModulesModel = new Model('training_modules')
 
 export const getTrainingModules = async (req, res) => {

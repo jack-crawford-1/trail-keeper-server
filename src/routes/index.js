@@ -1,61 +1,78 @@
 import express from 'express'
-import { indexPage } from '../controllers/index.js'
-import { getUsers, getUser, addUser, updateUser } from '../controllers/users.js'
+
+import { indexPage } from '../controllers/db/index.js'
+
+import {
+  getUsers,
+  getUser,
+  addUser,
+  updateUser,
+} from '../controllers/db/userController.js'
+
 import {
   getTrails,
   getTrail,
   addTrail,
   updateTrail,
-} from '../controllers/trails.js'
+} from '../controllers/db/trailController.js'
+
 import {
   getEvents,
   getEvent,
   addEvent,
   updateEvent,
-} from '../controllers/events.js'
+} from '../controllers/db/eventController.js'
+
 import {
   getMessages,
   getMessage,
   addMessage,
   updateMessage,
-} from '../controllers/messages.js'
+} from '../controllers/db/messageController.js'
+
 import {
   getVolunteers,
   getVolunteer,
   addVolunteer,
   updateVolunteer,
-} from '../controllers/volunteers.js'
+} from '../controllers/db/volunteerController.js'
+
 import {
   getTrailReports,
   getTrailReport,
   addTrailReport,
   updateTrailReport,
-} from '../controllers/trailReports.js'
+} from '../controllers/db/trailReportsController.js'
+
 import {
   getTrainingModules,
   getTrainingModule,
   addTrainingModule,
   updateTrainingModule,
-} from '../controllers/trainingModules.js'
+} from '../controllers/db/trainingModuleController.js'
+
 import {
   getForumPosts,
   getForumPost,
   addForumPost,
   updateForumPost,
-} from '../controllers/forumPosts.js'
-import { signup, login } from '../controllers/auth.js'
+} from '../controllers/db/forumPostController.js'
+
+import { signup, login } from '../controllers/db/authController.js'
+
 import authMiddleware from '../middleware/authMiddleware.js'
+
 import {
   getComment,
   addComment,
   updateComment,
   getComments,
-} from '../controllers/getComment.js'
+} from '../controllers/db/commentController.js'
 
 import getCurrentWeather from '../controllers/getCurrentWeather.js'
 import getSevenDayWeather from '../controllers/getSevenDayWeather.js'
 import getGeoJson from '../controllers/getGeoJson.js'
-import getDocRoutes from '../controllers/getDocRoutes.js'
+import getDocTrack from '../controllers/getDocTrack.js'
 
 const router = express.Router()
 
@@ -77,7 +94,7 @@ router.get('/training-modules', getTrainingModules)
 router.get('/forum-posts', getForumPosts)
 router.get('/weather', getCurrentWeather)
 router.get('/weatherseven', getSevenDayWeather)
-router.get('/docroutes', getDocRoutes)
+router.get('/doc-track', getDocTrack)
 
 router.get('/user/:id', authMiddleware, getUser)
 router.get('/trail/:id', getTrail)
