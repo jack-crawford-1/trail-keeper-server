@@ -1,4 +1,10 @@
+let cachedTracks = null
+
 export default async function getAllTracks(req, res) {
+  if (cachedTracks) {
+    return res.status(200).json(cachedTracks)
+  }
+
   const docApiKey = process.env.DOC_API_KEY
   const url = `https://api.doc.govt.nz/v1/tracks`
 
@@ -10,10 +16,12 @@ export default async function getAllTracks(req, res) {
       },
     })
     const data = await response.json()
-    console.log('Data:', data)
+    cachedTracks = data
     res.status(200).json(data)
   } catch (error) {
     console.error('Error:', error)
     res.status(500).json({ message: error.message })
   }
 }
+
+getAllTracks({}, { status: () => ({ json: () => {} }) })
