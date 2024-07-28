@@ -74,11 +74,14 @@ import getSevenDayWeather from '../controllers/getSevenDayWeather.js'
 import getGeoJson from '../controllers/getGeoJson.js'
 import getDocTrack from '../controllers/getDocTrack.js'
 import getAllTracks from '../controllers/getAllTracks.js'
+import getTopo from '../controllers/getTopo.js'
+import getTracksByRegion from '../controllers/getTracksByRegion.js'
 
 const router = express.Router()
 
 router.get('/', indexPage)
 
+router.get('/getTopo/:zoom/:x/:y', getTopo)
 router.get('/geojson', getGeoJson)
 router.get('/comments', getComments)
 router.post('/comments', addComment)
@@ -96,6 +99,7 @@ router.get('/forum-posts', getForumPosts)
 router.get('/weather', getCurrentWeather)
 router.get('/weatherseven', getSevenDayWeather)
 router.get('/all-doc-tracks', getAllTracks)
+router.get('/tracks-by-region/:regionId', getTracksByRegion)
 
 router.get('/user/:id', authMiddleware, getUser)
 router.get('/trail/:id', getTrail)
