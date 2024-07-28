@@ -11,7 +11,6 @@ export default async function getDocTrack(req, res) {
       },
     })
     const data = await response.json()
-    console.log('Data:', data)
     res.status(200).json(data)
   } catch (error) {
     console.error('Error:', error)
