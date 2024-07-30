@@ -5,10 +5,24 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export const getGeoJson = (req, res) => {
-  const geoJsonPath = path.join(
-    __dirname,
-    '../data/DOC_Walking_Experiences_537020759107984799.geojson'
-  )
+  const { type } = req.query
+  let geoJsonPath
+
+  if (type === 'tracks') {
+    geoJsonPath = path.join(
+      __dirname,
+      '../data/DOC_Walking_Experiences_537020759107984799.geojson'
+    )
+  } else if (type === 'huts') {
+    geoJsonPath = path.join(
+      __dirname,
+      '../data/DOC_Huts_-7150190283020057156.geojson'
+    )
+  } else {
+    res.status(400).send('Invalid type')
+    return
+  }
+
   res.setHeader('Content-Type', 'application/json')
   res.sendFile(geoJsonPath, (err) => {
     if (err) {
