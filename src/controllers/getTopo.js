@@ -8,7 +8,6 @@ export default async function getTopo(req, res) {
   const { zoom, x, y } = req.params
   const cacheKey = `tile_${zoom}_${x}_${y}`
 
-  // Check if the data is in the cache
   if (cachedTiles[cacheKey]) {
     return res.set('Content-Type', 'image/png').send(cachedTiles[cacheKey])
   }
@@ -21,7 +20,7 @@ export default async function getTopo(req, res) {
       throw new Error('Failed to fetch tile data')
     }
     const tileData = await response.buffer()
-    cachedTiles[cacheKey] = tileData // Store data in cache
+    cachedTiles[cacheKey] = tileData
 
     res.set('Content-Type', 'image/png')
     res.send(tileData)
